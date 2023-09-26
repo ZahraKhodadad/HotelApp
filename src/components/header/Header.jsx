@@ -1,6 +1,7 @@
 import { MdLocationOn } from "react-icons/md";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import useOutsideClick from "../hooks/useOutsideClick";
 const Header = () => {
   const [destination, setDestination] = useState("");
   const [openOptions, setOpenOptions] = useState(false);
@@ -40,10 +41,15 @@ const Header = () => {
             id="optionDropDown"
             onClick={() => setOpenOptions((prevState) => !prevState)}
           >
-            {options.adult} adult &bull; {options.children}children &bull; {options.room}room
+            {options.adult} adult &bull; {options.children}children &bull;{" "}
+            {options.room}room
           </div>
           {openOptions && (
-            <GuestOptionList options={options} handleOptions={handleOptions} />
+            <GuestOptionList
+              options={options}
+              handleOptions={handleOptions}
+              setOpenOptions={setOpenOptions}
+            />
           )}
           <span className="seperator"></span>
         </div>
@@ -57,9 +63,11 @@ const Header = () => {
   );
 };
 
-const GuestOptionList = ({ options, handleOptions }) => {
+const GuestOptionList = ({ options, handleOptions, setOpenOptions }) => {
+  const optionRef = useRef();
+  useOutsideClick(optionRef, "optionDropDown", () => setOpenOptions(false));
   return (
-    <div className="guestOptions">
+    <div className="guestOptions" ref={optionRef}>
       <OptionItem
         handleOptions={handleOptions}
         type="adult"
@@ -89,7 +97,7 @@ const OptionItem = ({ options, type, handleOptions, minLimit }) => {
         <button
           onClick={() => handleOptions(type, "dec")}
           className="optionCounterBtn"
-          disabled={options[type] <= minLimit }
+          disabled={options[type] <= minLimit}
         >
           <HiMinus className="icon" />
         </button>
