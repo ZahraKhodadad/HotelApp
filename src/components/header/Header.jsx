@@ -2,10 +2,20 @@ import { MdLocationOn } from "react-icons/md";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
 import { useRef, useState } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRange } from "react-date-range";
+import { format } from "date-fns";
+
 const Header = () => {
   const [destination, setDestination] = useState("");
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({ adult: 1, children: 0, room: 1 });
+
+  const [openDate, setOpenDate] = useState(false);
+  const [date, setDate] = useState([
+    { startDate: new Date(), endDate: new Date(), key: "selection" },
+  ]);
 
   const handleOptions = (name, operation) => {
     setOptions((prev) => ({
@@ -33,7 +43,19 @@ const Header = () => {
         <div className="headerSearchItem">
           <HiCalendar className="headerIcon dateIcon" />
 
-          <div className="dateDropDown">2023/02/24</div>
+          <div
+            onClick={() => setOpenDate((prevState) => !prevState)}
+            className="dateDropDown"
+          >
+            {`${format(date[0].startDate,"MM/dd/yyyy")} to ${format(date[0].endDate,"MM/dd/yyyy")} `}
+          </div>
+          {openDate && (
+            <DateRange
+              className="date"
+              ranges={date}
+              onChange={(item) => setDate([item.selection])}
+            />
+          )}
           <span className="seperator"></span>
         </div>
         <div className="headerSearchItem">
@@ -41,8 +63,8 @@ const Header = () => {
             id="optionDropDown"
             onClick={() => setOpenOptions((prevState) => !prevState)}
           >
-            {options.adult} adult &bull; {options.children}children &bull;{" "}
-            {options.room}room
+            {options.adult} adult &bull; {options.children} children &bull;{" "}
+            {options.room} room
           </div>
           {openOptions && (
             <GuestOptionList
