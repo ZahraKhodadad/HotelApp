@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import toast, { Toaster } from "react-hot-toast";
 import useFetch from "./components/hooks/useFetch";
 import LocationList from "./components/locationList/LocationList";
+import { Route, Routes } from "react-router-dom";
 function App() {
   const [count, setCount] = useState(0);
   // const { isLoading, data } = useFetch("http://localhost:5000/hotels", "");
@@ -11,7 +12,10 @@ function App() {
     <>
       <Header />
       <Toaster />
-      <LocationList/>
+      <Routes>
+        <Route path="/" element={<LocationList/>}/>
+      </Routes>
+      
     </>
   );
 }
