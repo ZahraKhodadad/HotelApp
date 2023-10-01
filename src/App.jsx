@@ -8,22 +8,23 @@ import { Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout/AppLayout";
 import Hotels from "./components/Hotels/Hotels";
 import SingleHotel from "./components/Hotels/SingleHotel";
+import HotelsProvider from "./components/Context/HotelsProvider";
 
 function App() {
   const [count, setCount] = useState(0);
   // const { isLoading, data } = useFetch("http://localhost:5000/hotels", "");
   return (
-    <>
+    <HotelsProvider>
       <Header />
       <Toaster />
       <Routes>
         <Route path="/" element={<LocationList />} />
-        <Route path="/hotels" element={<AppLayout/>}>
+        <Route path="/hotels" element={<AppLayout />}>
           <Route index element={<Hotels />} />
           <Route path=":id" element={<SingleHotel />} />
         </Route>
       </Routes>
-    </>
+    </HotelsProvider>
   );
 }
 
