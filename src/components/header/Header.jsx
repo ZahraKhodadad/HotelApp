@@ -26,7 +26,6 @@ const Header = () => {
   };
 
   const handleSearch = () => {
-    console.log("clicked!");
     const encodedParams = createSearchParams({
       destination,
       options: JSON.stringify(options),
