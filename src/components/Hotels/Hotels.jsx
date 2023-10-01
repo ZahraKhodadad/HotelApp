@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { useHotels } from "../Context/HotelsProvider";
 
 const hotels = () => {
-  const { isLoading, data } = useHotels();
+  const { isLoading, hotels } = useHotels();
   if (isLoading) return <p>...isLoading</p>;
   return (
     <div className="searchList">
-      <h2>Search Results:{data.length}</h2>
-      {data.map((item) => (
+      <h2>Search Results:{hotels.length}</h2>
+      {hotels.map((item) => (
         <Link
           to={`/hotels/${item.id}?lat=${item.latitude}&len=${item.longitude}`}
           key={item.id}
