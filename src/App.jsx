@@ -10,26 +10,29 @@ import Hotels from "./components/Hotels/Hotels";
 import SingleHotel from "./components/Hotels/SingleHotel";
 import HotelsProvider from "./components/Context/HotelsProvider";
 import BookmarkLayout from "./components/BookmarkLayout/BookmarkLayout";
+import BookmarksProvider from "./components/Context/BookmarksProvider";
 
 function App() {
   const [count, setCount] = useState(0);
   // const { isLoading, data } = useFetch("http://localhost:5000/hotels", "");
   return (
-    <HotelsProvider>
-      <Header />
-      <Toaster />
-      <Routes>
-        <Route path="/" element={<LocationList />} />
-        <Route path="/hotels" element={<AppLayout />}>
-          <Route index element={<Hotels />} />
-          <Route path=":id" element={<SingleHotel />} />
-        </Route>
-        <Route path="/bookmark" element={<BookmarkLayout/>}>
-          <Route index element={<div>Bookmark List</div>} />
-          <Route path="add" element={<div>add new Bookmark</div>} />
-        </Route>
-      </Routes>
-    </HotelsProvider>
+    <BookmarksProvider>
+      <HotelsProvider>
+        <Header />
+        <Toaster />
+        <Routes>
+          <Route path="/" element={<LocationList />} />
+          <Route path="/hotels" element={<AppLayout />}>
+            <Route index element={<Hotels />} />
+            <Route path=":id" element={<SingleHotel />} />
+          </Route>
+          <Route path="/bookmarks" element={<BookmarkLayout />}>
+            <Route index element={<div>Bookmark List</div>} />
+            <Route path="add" element={<div>add new Bookmark</div>} />
+          </Route>
+        </Routes>
+      </HotelsProvider>
+    </BookmarksProvider>
   );
 }
 
