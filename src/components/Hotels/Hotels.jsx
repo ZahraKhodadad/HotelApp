@@ -9,7 +9,7 @@ const hotels = () => {
       <h2>Search Results:{hotels.length}</h2>
       {hotels.map((item) => (
         <Link
-          to={`/hotels/${item.id}?lat=${item.latitude}&len=${item.longitude}`}
+          to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
           key={item.id}
         >
           <div className="searchItem">
