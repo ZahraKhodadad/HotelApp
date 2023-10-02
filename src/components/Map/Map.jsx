@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import useGeoLocation from "../hooks/useGeoLocation";
 
 const Map = () => {
-  const { isLoading, hotels } = useHotels();
+  const { hotels } = useHotels();
   const [mapCenter, setMapCenter] = useState([51, 3]);
   const [searchParams, setSearchParams] = useSearchParams();
   const lat = searchParams.get("lat");

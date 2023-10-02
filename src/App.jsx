@@ -9,6 +9,7 @@ import AppLayout from "./components/AppLayout/AppLayout";
 import Hotels from "./components/Hotels/Hotels";
 import SingleHotel from "./components/Hotels/SingleHotel";
 import HotelsProvider from "./components/Context/HotelsProvider";
+import BookmarkLayout from "./components/BookmarkLayout/BookmarkLayout";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +23,10 @@ function App() {
         <Route path="/hotels" element={<AppLayout />}>
           <Route index element={<Hotels />} />
           <Route path=":id" element={<SingleHotel />} />
+        </Route>
+        <Route path="/bookmark" element={<BookmarkLayout/>}>
+          <Route index element={<div>Bookmark List</div>} />
+          <Route path="add" element={<div>add new Bookmark</div>} />
         </Route>
       </Routes>
     </HotelsProvider>
