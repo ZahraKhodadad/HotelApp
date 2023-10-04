@@ -72,7 +72,7 @@ function DetectClick() {
   const navigate = useNavigate();
   useMapEvent({
     click: (e) =>
-      navigate(`/bookmarks/?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
+      navigate(`/bookmarks/add?lat=${e.latlng.lat}&lng=${e.latlng.lng}`),
     // console.log(e.latlng.lat),
   });
   return null;
