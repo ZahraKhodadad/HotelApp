@@ -11,6 +11,8 @@ import SingleHotel from "./components/Hotels/SingleHotel";
 import HotelsProvider from "./components/Context/HotelsProvider";
 import BookmarkLayout from "./components/BookmarkLayout/BookmarkLayout";
 import BookmarksProvider from "./components/Context/BookmarksProvider";
+import Bookmark from "./components/Bookmark/Bookmark";
+import SingleBookmark from "./components/Bookmark/SingleBookmark";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -27,7 +29,8 @@ function App() {
             <Route path=":id" element={<SingleHotel />} />
           </Route>
           <Route path="/bookmarks" element={<BookmarkLayout />}>
-            <Route index element={<div>Bookmark List</div>} />
+            <Route index element={<Bookmark />} />
+            <Route path=":id" element={<SingleBookmark />} />
             <Route path="add" element={<div>add new Bookmark</div>} />
           </Route>
         </Routes>
