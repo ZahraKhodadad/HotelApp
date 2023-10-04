@@ -1341,6 +1341,78 @@
       "longitude": "2.861157573506015",
       "host_location": "Iran",
       "id": 2
+    },
+    {
+      "cityName": "Kortemark",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "51.009562796313546",
+      "longitude": "2.982101440429688",
+      "host_location": "Kortemark Belgium",
+      "id": 3
+    },
+    {
+      "cityName": "Lievegem",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "51.12429356315942",
+      "longitude": "3.587722778320313",
+      "host_location": "Lievegem Belgium",
+      "id": 4
+    },
+    {
+      "cityName": "Ardooie",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "51.007510603900016",
+      "longitude": "3.1810569763183594",
+      "host_location": "Ardooie Belgium",
+      "id": 5
+    },
+    {
+      "cityName": "Beernem",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "51.13832461205051",
+      "longitude": "3.3728027343750004",
+      "host_location": "Beernem Belgium",
+      "id": 6
+    },
+    {
+      "cityName": "Staden",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "50.97273780070303",
+      "longitude": "3.0133438110351562",
+      "host_location": "Staden Belgium",
+      "id": 7
+    },
+    {
+      "cityName": "Houthulst",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "50.97554814586738",
+      "longitude": "2.9549789428710938",
+      "host_location": "Houthulst Belgium",
+      "id": 8
+    },
+    {
+      "cityName": "Terneuzen",
+      "country": "Netherlands (the)",
+      "countryCode": "NL",
+      "latitude": "51.324068407059286",
+      "longitude": "3.9056396484375004",
+      "host_location": "Terneuzen Netherlands (the)",
+      "id": 9
+    },
+    {
+      "cityName": "Wingene",
+      "country": "Belgium",
+      "countryCode": "BE",
+      "latitude": "51.053561812823304",
+      "longitude": "3.282852172851563",
+      "host_location": "Wingene Belgium",
+      "id": 10
     }
   ]
 }

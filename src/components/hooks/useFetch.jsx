@@ -6,13 +6,11 @@ const useFetch = (url, query = "") => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   useEffect(() => {
-    // const controller = new AbortController();
-    // const signal = controller.signal;
+
     async function fetchData() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(`${url}?${query}`);
-        // console.log(data);
         setData(data)
       } catch (error) {
        
@@ -24,9 +22,6 @@ const useFetch = (url, query = "") => {
       }
     }
     fetchData();
-    // return () => {
-    //   controller.abort();
-    // };
   }, [query, url]);
   return { isLoading, data };
 };

@@ -1,31 +1,56 @@
-import { createContext, useContext, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
 const BookmarkContext = createContext();
 
 const BookmarksProvider = ({ children }) => {
-  const [isLoadingCurrBookmark, setIsLoadingCurrBookmark] = useState(false);
   const [currentBookmark, setCurrentBookmark] = useState(null);
+  const [bookmarks, setBookmarks] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { isLoading, data: bookmarks } = useFetch(
-    "http://localhost:5000/bookmarks",
-    ""
-  );
-  // console.log(data);
+ 
+  useEffect(() => {
+    async function fetchBookmarkList() {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get("http://localhost:5000/bookmarks");
+        setBookmarks(data);
+      } catch (error) {
+        toast(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchBookmarkList();
+  }, []);
+
   async function getBookmark(id) {
-    setIsLoadingCurrBookmark(true);
+    setIsLoading(true);
     try {
       const { data } = await axios.get(`http://localhost:5000/bookmarks/${id}`);
-      // console.log(data);
       setCurrentBookmark(data);
     } catch (error) {
       toast.error(error.message);
       setCurrentBookmark(null);
     } finally {
-      setIsLoadingCurrBookmark(false);
+      setIsLoading(false);
+    }
+  }
+  async function createBookmark(newBookmark) {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post(
+        `http://localhost:5000/bookmarks`,
+        newBookmark
+      );
+      setCurrentBookmark(data);
+      setBookmarks((prev) => [...prev, data]);
+    } catch (error) {
+      toast.error(error.message);
+      setCurrentBookmark(null);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -35,8 +60,9 @@ const BookmarksProvider = ({ children }) => {
         isLoading,
         bookmarks,
         getBookmark,
+        createBookmark,
         currentBookmark,
-        isLoadingCurrBookmark,
+        setBookmarks,
       }}
     >
       {children}

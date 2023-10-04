@@ -7,12 +7,12 @@ import Loader from "../Loader/Loader";
 const SingleBookmark = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { currentBookmark, isLoadingCurrBookmark, getBookmark } = useBookmark();
+  const { currentBookmark, isLoading, getBookmark } = useBookmark();
   useEffect(() => {
     getBookmark(id);
   }, [id]);
 
-  if (isLoadingCurrBookmark || !currentBookmark) return <Loader />;
+  if (isLoading || !currentBookmark) return <Loader />;
 
   return (
     <div>
