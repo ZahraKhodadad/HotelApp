@@ -1337,19 +1337,19 @@
       "cityName": "Kortemark",
       "country": "Belgium",
       "countryCode": "BE",
-      "latitude": "51.009562796313546",
-      "longitude": "2.982101440429688",
+      "latitude": "51.003405946675294",
+      "longitude": "3.0112533358579134",
       "host_location": "Kortemark Belgium",
-      "id": 3
+      "id": 11
     },
     {
-      "cityName": "Beernem",
+      "cityName": "Kortemark",
       "country": "Belgium",
       "countryCode": "BE",
-      "latitude": "51.13832461205051",
-      "longitude": "3.3728027343750004",
-      "host_location": "Beernem Belgium",
-      "id": 6
+      "latitude": "50.99433120501849",
+      "longitude": "3.016924420772985",
+      "host_location": "Kortemark Belgium",
+      "id": 12
     }
   ]
 }
