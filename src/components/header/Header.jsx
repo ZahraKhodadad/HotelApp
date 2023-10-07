@@ -7,10 +7,12 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import {
+  Link,
   createSearchParams,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import Login from "../Login/Login";
 
 const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -104,6 +106,9 @@ const Header = () => {
           </button>
         </div>
       </div>
+      <Link to="/Login">
+        <div>Login</div>
+      </Link>
     </div>
   );
 };

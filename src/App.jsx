@@ -14,6 +14,7 @@ import BookmarksProvider from "./components/Context/BookmarksProvider";
 import Bookmark from "./components/Bookmark/Bookmark";
 import SingleBookmark from "./components/Bookmark/SingleBookmark";
 import AddNewBookmark from "./components/Bookmark/AddNewBookmark";
+import Login from "./components/Login/Login";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -34,6 +35,7 @@ function App() {
             <Route path=":id" element={<SingleBookmark />} />
             <Route path="add" element={<AddNewBookmark />} />
           </Route>
+          <Route path="/Login" element={<Login />} />
         </Routes>
       </HotelsProvider>
     </BookmarksProvider>
