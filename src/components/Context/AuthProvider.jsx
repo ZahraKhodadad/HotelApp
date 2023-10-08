@@ -17,26 +17,24 @@ const AuthReducer = (state, action) => {
   }
 };
 
-const [{ user, isAuthenticated }, dispatch] = useReducer(
-  AuthReducer,
-  initialState
-);
-
 const FAKE_USER = {
   name: "zahra",
   email: "zahra.khodadad50@yahoo.com",
   password: "1234",
 };
 
-const login = () => {
-  if (user.name === FAKE_USER.name && user.email === FAKE_USER.email)
-    dispatch({ type: "login", payload: FAKE_USER });
-};
-const logout = () => {
-  dispatch({ type: "logout" });
-};
-
 const AuthProvider = ({ children }) => {
+  const [{ user, isAuthenticated }, dispatch] = useReducer(
+    AuthReducer,
+    initialState
+  );
+  const login = (email, password) => {
+    if (email === FAKE_USER.email && password === FAKE_USER.password)
+      dispatch({ type: "login", payload: FAKE_USER });
+  };
+  const logout = () => {
+    dispatch({ type: "logout" });
+  };
   return (
     <AuthContext.Provider value={{ user, login, logout, isAuthenticated }}>
       {children}
@@ -46,4 +44,4 @@ const AuthProvider = ({ children }) => {
 
 export default AuthProvider;
 
-const useAuth = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext);

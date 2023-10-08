@@ -1,5 +1,11 @@
 import { MdLocationOn } from "react-icons/md";
-import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
+import {
+  HiCalendar,
+  HiLogout,
+  HiMinus,
+  HiPlus,
+  HiSearch,
+} from "react-icons/hi";
 import { useRef, useState } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 import "react-date-range/dist/styles.css"; // main style file
@@ -8,11 +14,13 @@ import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import {
   Link,
+  NavLink,
   createSearchParams,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import Login from "../Login/Login";
+import { useAuth } from "../Context/AuthProvider";
+import Bookmark from "../Bookmark/Bookmark";
 
 const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,6 +34,7 @@ const Header = () => {
   const [date, setDate] = useState([
     { startDate: new Date(), endDate: new Date(), key: "selection" },
   ]);
+
   const navigate = useNavigate();
   const handleOptions = (name, operation) => {
     setOptions((prev) => ({
@@ -48,6 +57,7 @@ const Header = () => {
 
   return (
     <div className="header">
+      <NavLink to="/bookmarks">BookMark</NavLink>
       <div className="headerSearch">
         <div className="headerSearchItem">
           <MdLocationOn className="headerIcon locationIcon" />
@@ -106,9 +116,7 @@ const Header = () => {
           </button>
         </div>
       </div>
-      <Link to="/Login">
-        <div>Login</div>
-      </Link>
+      <User />
     </div>
   );
 };
@@ -162,5 +170,30 @@ const OptionItem = ({ options, type, handleOptions, minLimit }) => {
     </div>
   );
 };
+
+function User() {
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+  return (
+    <div>
+      {!isAuthenticated ? (
+        <Link to="/Login">
+          <div>Login</div>
+        </Link>
+      ) : (
+        <div>
+          <span>{user.name}</span>
+          <button onClick={handleLogout}>
+            <HiLogout className="icon" />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default Header;
